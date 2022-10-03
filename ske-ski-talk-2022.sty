@@ -1,0 +1,72 @@
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{csquotes}
+\usepackage{cleveref}
+\usepackage{stmaryrd}
+\usepackage{adjustbox}
+\usepackage{subfig}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{arydshln}
+
+\crefname{item}{item}{items}
+\Crefname{Item}{Item}{Items}
+
+\usepackage{wasysym}
+\usepackage[ddmmyyyy]{datetime}
+
+\usepackage{color}
+\renewcommand\UrlFont{\color{blue}\rmfamily}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+    language=Python,
+    aboveskip=2mm,
+    belowskip=2mm,
+    showstringspaces=false,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numbers=none,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=2
+}
+
+\renewcommand{\dateseparator}{-}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+        T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+% version
+\newcommand{\psyki}{PSyKI}
+\newcommand{\longpsyki}{Platform for Symbolic Knowledge Injection}
+\newcommand{\psyke}{PSyKE}
+\newcommand{\longpsyke}{Platform for Symbolic Knowledge Extraction}
+\newcommand{\longskeski}{Symbolic Knowledge Extraction \& Injection}
+\newcommand{\skeski}{SKE \& SKI}
+\newcommand{\ske}{SKE}
+\newcommand{\ski}{SKI}
+\newcommand{\longske}{Symbolic Knowledge Extraction}
+\newcommand{\longski}{Symbolic Knowledge Injection}
+\newcommand{\templatemajor}{1}
+\newcommand{\templateminor}{4}
+\newcommand{\templatepatch}{20220217}
+\newcommand{\templateversion}{\templatemajor.\templateminor.\templatepatch}
+\newcommand{\argmin}[2]{\underset{#1}{\text{argmin}} \left\{ #2 \right\}}
+\newcommand{\argmax}[2]{\underset{#1}{\text{argmax}} \left\{ #2 \right\}}
+\newcommand{\unify}[2]{\text{unify}(#1, #2)}
+\newcommand{\mgu}[2]{\text{mgu}(#1, #2)}
+\newcommand{\functor}[1]{\mathtt{#1}}
+\newcommand{\variable}[1]{\mathit{#1}}
+\newcommand{\predication}[1]{\mathit{#1}}
+\newcommand{\consdot}{\functor{~.~}}
+\newcommand{\const}[1]{\mathtt{#1}}
+\newcommand{\pred}[1]{\mathit{#1}}
+\newcommand{\var}[1]{\mathit{#1}}
+\newcommand{\scinum}[2]{$#1 \cdot 10^{#2}$}

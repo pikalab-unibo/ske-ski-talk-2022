@@ -1,0 +1,51 @@
+% !TeX spellcheck = en_GB
+% !TeX root = ../ski-extraamas-2022.tex
+
+\centering
+\begin{adjustbox}{width=\textwidth,totalheight=0.7\textheight,keepaspectratio}
+%\begin{table}%[!h]
+    %
+    \begin{tabular}{l|r}
+        \textbf{Formula} & \textbf{Continuous interpretation}
+        \\
+        \hline\hline
+        $\llbracket\neg \phi\rrbracket$ & $1 - \llbracket\phi\rrbracket$
+        \\
+        $\llbracket\phi  \wedge \psi\rrbracket$ &  $min\{\llbracket\phi\rrbracket, \llbracket\psi\rrbracket\}$
+        \\
+        $\llbracket\phi  \vee \psi\rrbracket$ & $max\{\llbracket\phi\rrbracket, \llbracket\psi\rrbracket\}$
+        \\
+        $\llbracket\phi = \psi\rrbracket$ & $\llbracket\neg( \phi \ne \psi )\rrbracket $
+        \\
+        $\llbracket\phi \ne \psi\rrbracket$ & $|\llbracket\phi\rrbracket-\llbracket\psi\rrbracket|$ 
+        \\
+        $\llbracket\phi > \psi\rrbracket$  & $max\{0, \llbracket\phi\rrbracket - \llbracket\psi\rrbracket\}$
+        \\
+        $\llbracket\phi \ge \psi\rrbracket$ & $\llbracket( \phi > \psi ) \vee ( \phi = \psi )\rrbracket$ 
+        \\
+        $\llbracket\phi < \psi\rrbracket$  &  $max\{0, \llbracket\psi\rrbracket - \llbracket\phi\rrbracket\}$
+        \\
+        $\llbracket\phi \le \psi\rrbracket$  & $\llbracket( \phi < \psi ) \vee ( \phi = \psi )\rrbracket$
+        \\
+        $\llbracket\phi \Rightarrow \psi\rrbracket$ & $min\{1, 1- \llbracket\psi\rrbracket+\llbracket\phi\rrbracket\}$
+         \\
+        $\llbracket\phi \Leftarrow \psi\rrbracket$ & $min\{1, 1-\llbracket\phi\rrbracket+\llbracket\psi\rrbracket\}$ 
+        \\
+        $\llbracket\phi \Leftrightarrow \psi\rrbracket$ & $min\{1, 1-|\llbracket\phi\rrbracket-\llbracket\psi\rrbracket|\}$ 
+        \\
+        $\llbracket \text{expr}(\bar{X}) \rrbracket$ & $\text{expr}(\llbracket\bar{X}\rrbracket)$
+        \\
+        $\llbracket \mathtt{true} \rrbracket$ & $1$
+        \\
+        $\llbracket \mathtt{false} \rrbracket$ & $0$
+        \\
+        $\llbracket X \rrbracket$ & $x$
+        \\
+        $\llbracket \const{k} \rrbracket$ & $k$
+        \\
+        $\llbracket \pred{p}(\bar{X}) \rrbracket^{**}$ & $\llbracket \psi_1 \vee \ldots \vee \psi_k \rrbracket$
+        \\
+        $\llbracket \pred{class}(\bar{X}, \const{y}_i) \leftarrow \psi \rrbracket$ & $\llbracket \psi \rrbracket^{*}$
+    \end{tabular}
+%\end{table}
+\end{adjustbox}

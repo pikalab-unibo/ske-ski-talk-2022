@@ -5,7 +5,7 @@ on:
       - main
       - master
 env:
-  LATEX_ROOT: AMSBolognaFC-template
+  LATEX_ROOT: ske-ski-talk-2022
 jobs:
   compile:
     runs-on: ubuntu-latest
@@ -14,17 +14,17 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: recursive
-          
+
       - name: Build latex
         uses: xu-cheng/latex-action@v2
         with:
           root_file: ${{ env.LATEX_ROOT }}.tex
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape
-          
+
       - name: Get Version
         id: get-version
         run: echo "::set-output name=version::$(cat *.tex | python .github/scripts/compute-version.py)"
-        
+
       - name: Create Release
         id: create-release
         uses: actions/create-release@v1
@@ -32,7 +32,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: '${{ steps.get-version.outputs.version }}'
-          
+
       - name: Upload Release Asset
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
