@@ -1,27 +1,23 @@
 \resizebox{\textwidth}{!}{
-    \begin{tabular}{l|r||l|r}
-        \textbf{Formula} & \textbf{C. interpretation} & \textbf{Formula} & \textbf{C. interpretation}
+    \begin{tabular}{l|r||cl|r}
+         \textbf{Formula} & \textbf{C. interpretation} & & \textbf{Formula} & \textbf{C. interpretation}
         \\
         \hline\hline
-        $\llbracket\neg \phi\rrbracket$ & $\eta\{1 - \llbracket\phi\rrbracket\}$ & $\llbracket\phi \leftarrow \psi\rrbracket$ & $\eta\{min\{1, 1-\llbracket\phi\rrbracket+\llbracket\psi\rrbracket\}\}$ % Negation % Left Implication
+        $\llbracket\neg \phi\rrbracket$ & $\eta(1 - \llbracket\phi\rrbracket)$ & & $\llbracket\phi \le \psi\rrbracket$  & $\eta(1 + \llbracket \psi \rrbracket - \llbracket \phi \rrbracket)$  % Negation % Less equal
         \\
-        $\llbracket\phi  \wedge \psi\rrbracket$ &  $\eta\{min\{\llbracket\phi\rrbracket, \llbracket\psi\rrbracket\}\}$ & $\llbracket\phi \leftrightarrow \psi\rrbracket$ & $\eta\{min\{1, 1-|\llbracket\phi\rrbracket-\llbracket\psi\rrbracket|\}\}$ % Conjunction % Double Implication
+        $\llbracket\phi  \wedge \psi\rrbracket$ &  $\eta(min(\llbracket\phi\rrbracket, \llbracket\psi\rrbracket))$ & &  $\llbracket \pred{class}(\bar{X}, \const{y}_i) \leftarrow \psi \rrbracket$ & $\llbracket \psi \rrbracket^{*}$ % Conjunction % Class
         \\
-        $\llbracket\phi  \vee \psi\rrbracket$ & $\eta\{max\{\llbracket\phi\rrbracket, \llbracket\psi\rrbracket\}\}$ & $\llbracket \text{expr}(\bar{X}) \rrbracket$ & $\text{expr}(\llbracket\bar{X}\rrbracket)$ % Disjunction
+        $\llbracket\phi  \vee \psi\rrbracket$ & $\eta(max(\llbracket\phi\rrbracket, \llbracket\psi\rrbracket))$ & & $\llbracket \text{expr}(\bar{X}) \rrbracket$ & $\text{expr}(\llbracket\bar{X}\rrbracket)$ % Disjunction
         \\
-        $\llbracket\phi = \psi\rrbracket$ & $\eta\{\llbracket\neg( \phi \ne \psi )\rrbracket \}$ &$\llbracket \mathtt{true} \rrbracket$ & $1$ % Equal
+        $\llbracket\phi = \psi\rrbracket$ & $\eta(\llbracket\neg( \phi \ne \psi )\rrbracket )$ & &$\llbracket \mathtt{true} \rrbracket$ & $1$ % Equal
         \\
-        $\llbracket\phi \ne \psi\rrbracket$ & $\eta\{|\llbracket\phi\rrbracket-\llbracket\psi\rrbracket|\}$ & $\llbracket \mathtt{false} \rrbracket$ & $0$ % Not Equal
+        $\llbracket\phi \ne \psi\rrbracket$ & $\eta(|\llbracket\phi\rrbracket-\llbracket\psi\rrbracket|)$ & & $\llbracket \mathtt{false} \rrbracket$ & $0$ % Not Equal
         \\
-        $\llbracket\phi > \psi\rrbracket$ & $\eta\{max\{0, \llbracket\phi\rrbracket - \llbracket\psi\rrbracket\}\}$ & $\llbracket X \rrbracket$ & $x$ % Greater
+        $\llbracket\phi > \psi\rrbracket$ & $\eta(max(0, \frac{1}{2} + \llbracket\phi\rrbracket - \llbracket\psi\rrbracket))$ & & $\llbracket X \rrbracket$ & $x$ % Greater
         \\
-        $\llbracket\phi \ge \psi\rrbracket$  & $\eta\{\llbracket( \phi > \psi ) \vee ( \phi = \psi )\rrbracket\}$ & $\llbracket \const{k} \rrbracket$ & $k$ % Greater Equal
+        $\llbracket\phi \ge \psi\rrbracket$  & $\eta(1 + \llbracket \phi \rrbracket - \llbracket \psi \rrbracket)$ & & $\llbracket \const{k} \rrbracket$ & $k$ % Greater Equal
         \\
-        $\llbracket\phi < \psi\rrbracket$  &  $\eta\{max\{0, \llbracket\psi\rrbracket - \llbracket\phi\rrbracket\}\}$ & $\llbracket \pred{p}(\bar{X}) \rrbracket^{**}$ & $\llbracket \psi_1 \vee \ldots \vee \psi_k \rrbracket$ % Less
-        \\
-        $\llbracket\phi \le \psi\rrbracket$  & $\eta\{\llbracket( \phi < \psi ) \vee ( \phi = \psi )\rrbracket\}$ & $\llbracket \pred{class}(\bar{X}, \const{y}_i) \leftarrow \psi \rrbracket$ & $\llbracket \psi \rrbracket^{*}$ % Less Equal
-        \\
-        $\llbracket\phi \rightarrow \psi\rrbracket$ & $\eta\{min\{1, 1- \llbracket\psi\rrbracket+\llbracket\phi\rrbracket\}\}$ & & % Right Implication        
+        $\llbracket\phi < \psi\rrbracket$  &  $\eta(max(0, \frac{1}{2} + \llbracket\psi\rrbracket - \llbracket\phi\rrbracket))$ & & $\llbracket \pred{p}(\bar{X}) \rrbracket^{**}$ & $\llbracket \psi_1 \vee \ldots \vee \psi_k \rrbracket$ % Less       
     \end{tabular}
 }
 \begin{center}\scriptsize

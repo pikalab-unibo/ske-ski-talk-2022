@@ -14,17 +14,42 @@
 \title[Dive into \skeski]
 {Dive into \longskeski}
 %
-\subtitle[AMS Series Templates]
-{AMS Series Templates}
+\subtitle[gentle introduction and technologies]
+{gentle introduction and technologies}
 %
-\author[\sspeaker{Magnini}]
-{\speaker{Matteo Magnini}\\\href{mailto:matteo.magnini@unibo.it}{matteo.magnini@unibo.it}}
+
+\author[\sspeaker{Magnini et al.} ]
+{\speaker{Matteo Magnini}$^{*}$ \and Giovanni Ciatto$^{*}$}
 %
 \institute[DISI, Univ.\ Bologna]
-{Dipartimento di Informatica -- Scienza e Ingegneria (DISI)\\\textsc{Alma Mater Studiorum} -- Universit{\`a} di Bologna}
+{
+    $^{*}$Dipartimento di Informatica -- Scienza e Ingegneria (DISI)\\\textsc{Alma Mater Studiorum} -- Universit{\`a} di Bologna
+    \\
+    \{\speaker{matteo.magnini}, giovanni.ciatto\}@unibo.it % emph the presenting author's email
+}
 %
-\date[\today]{\today}
+\date[XAI project]{XAI project\\October 7, 2022, virtual}
 %
+\AtBeginSection[]
+{
+    %\\\\\\\\\\\\\\\\\\\\\
+    \begin{frame}<beamer>[c,noframenumbering]
+        \frametitle{Next in Line\ldots}
+        \tableofcontents[sectionstyle=show/shaded,subsectionstyle=hide]
+    \end{frame}
+    %\\\\\\\\\\\\\\\\\\\\\
+}
+\AtBeginSubsection[]
+{
+    %\\\\\\\\\\\\\\\\\\\\\
+    \begin{frame}<beamer>[shrink,noframenumbering]
+        \frametitle{Focus on\ldots}
+        \mbox{~}
+        \tableofcontents[currentsubsection,sectionstyle=shaded,subsectionstyle=show/shaded]
+        \mbox{~}
+    \end{frame}
+    %\\\\\\\\\\\\\\\\\\\\\
+}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
@@ -46,6 +71,26 @@
 %===============================================================================
 \section{Premises}
 %===============================================================================
+
+\begin{frame}[c]{Presentation}
+    
+    \begin{block}{Not only myself}
+        \begin{itemize}
+            \item \emph{Andrea Agiollo}, \unibo{} \disi{};
+            %
+            \item \emph{Andrea Omicini}, \unibo{} \disi{};
+            %
+            \item \emph{Andrea Rafanelli}, \unipi{} \di{}, \uniaq{} \disim{};
+            %
+            \item \emph{Federico Sabbatini}, \uniurb{} \dispea{};
+            %
+            \item \emph{Giovanni Ciatto}, \unibo{} \disi{};
+            %
+            \item \emph{Matteo Magnini}, \unibo{} \disi{};
+        \end{itemize}
+    \end{block}
+
+\end{frame}
 
 \begin{frame}[allowframebreaks]{Concerning human (and machine) reasoning}
     
@@ -71,7 +116,10 @@
         \end{itemize}
     \end{block}
 
-    \framebreak
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]{Concepts we need to know}
 
     %
     \begin{block}{Symbolic knowledge}
@@ -88,7 +136,6 @@
             \end{itemize}
         \end{enumerate}
     \end{block}
-    
     
     \framebreak
 
@@ -127,58 +174,112 @@
         \end{itemize}
     \end{block}
     
+    \framebreak
+    
+     \begin{figure}
+        \centering
+        \subfloat{\includegraphics[width=0.4\textwidth]{figures/nn-iris}}
+        %
+        \qquad
+        %
+        \centering
+        \subfloat{\includegraphics[width=0.4\textwidth]{figures/decision-tree-iris}}
+    \end{figure}
+    
+    \framebreak
+    
+    Set of propositional logic rules built from the previous decision tree:
+    
+    \begin{equation*}
+        \begin{aligned}
+            \pred{iris}&(\var{SepalLenght}, \var{SepalWidth}, \var{PetalLenght}, \var{PetalWidth}, \const{setosa})\text{:-}\\
+            &\var{PetalWidth} =< 0.6.\\
+            \pred{iris}&(\var{SepalLenght}, \var{SepalWidth}, \var{PetalLenght}, \var{PetalWidth}, \const{versicolor}) \text{:-}\\
+            &\var{PetalWidth} > 0.6, \var{PetalWidth} =< 1.7, \var{PetalLenght} =< 4.9.\\
+            \pred{iris}&(\var{SepalLenght}, \var{SepalWidth}, \var{PetalLenght}, \var{PetalWidth}, \const{virginica}) \text{:-}\\
+            &\var{PetalWidth} > 0.6, \var{PetalWidth} =< 1.5, \var{PetalLenght} > 4.9.\\
+            \pred{iris}&(\var{SepalLenght}, \var{SepalWidth}, \var{PetalLenght}, \var{PetalWidth}, \const{versicolor}) \text{:-}\\
+            &\var{PetalWidth} > 1.5, \var{PetalWidth} =< 1.7, \var{PetalLenght} > 4.9.\\
+            \pred{iris}&(\var{SepalLenght}, \var{SepalWidth}, \var{PetalLenght}, \var{PetalWidth}, \const{virginica}) \text{:-}\\
+            &\var{PetalWidth} > 1.7.\\
+        \end{aligned}
+    \end{equation*}
+    
+    \framebreak
     
 \end{frame}
 %/////////
+
+
+%===============================================================================
+\section{\longske}
+%===============================================================================
+
+
+%/////////
+\begin{frame}[c]{Definition}
+    \begin{block}{We define \longske{} (\ske) as:}
+        \begin{displayquote}\itshape
+            any \emph{algorithmic} procedure accepting \emph{trained} \alert{sub-symbolic predictors} as input and producing \alert{symbolic knowledge} as output, in such a way that the extracted knowledge \emph{reflects} the behaviour of the predictor with high fidelity.
+        \end{displayquote}
+        %
+    \end{block}
+    %
+    \begin{block}{Notes}
+        \begin{itemize}
+            \item This will be just a brief introduction, I will focus more on \longski{} rather than \longske;
+            %
+            \item for more details and questions about \ske{} please contact \emph{Federico Sabbatini} \href{mailto:f.sabbatini@unibo.it}{f.sabbatini@unibo.it}
+        \end{itemize}
+    \end{block}
+    
+\end{frame}
+%/////////
+
+
+
+
 
 
 
 %===============================================================================
 \section{\longski}
 %===============================================================================
-
+    
 %/////////
-\begin{frame}[allowframebreaks]{Definition}
-    %
-    We define \longski{} as:
-    %
-    \begin{displayquote}\itshape
-        any \emph{algorithmic} procedure affecting how \alert{sub-symbolic predictors} draw their inferences in such a way that predictions are either \emph{computed} as a function of, or made \emph{consistent} with, some \emph{given} \alert{symbolic knowledge}*.
-    \end{displayquote}
-    %
-    \vfill
-    %
-    * a wide definition that includes the vast majority of the works surveyed in \cite{surveyNeuroSymb,surveyXie,surveyCalegariCO20}.
+\begin{frame}[c]{Definition}
+    \begin{block}{We define \longski{} as: \ccite{surveyNeuroSymb,surveyXie,surveyCalegariCO20}}
+        \begin{displayquote}\itshape
+            any \emph{algorithmic} procedure affecting how \alert{sub-symbolic predictors} draw their inferences in such a way that predictions are either \emph{computed} as a function of, or made \emph{consistent} with, some \emph{given} \alert{symbolic knowledge}.
+        \end{displayquote}
+    \end{block}
     
 \end{frame}
 %/////////
 
 
 %/////////
-\begin{frame}[c]{Why SKI?}
-    %
-    There are several benefits:
-    %
-    \begin{itemize}
+\begin{frame}[allowframebreaks]{Why SKI?}
+    \begin{block}{There are several benefits:}
         %
-        \item prevent the predictor to become a black-box\alert{!};
+        \begin{itemize}
+            %
+            \item prevent the predictor to become a black-box\alert{!};
+            %
+            \item reduce learning time;
+            %
+            \item reduce the data size needed for training;
+            %
+            \item improve predictor's accuracy;
+            %
+            \item build a predictor that behave as a logic engine.
+        \end{itemize}
         %
-        \item reduce learning time;
-        %
-        \item reduce the data size needed for training;
-        %
-        \item improve predictor's accuracy;
-        %
-        \item build a predictor that behave as a logic engine.
-    \end{itemize}
-    %
-\end{frame}
-%/////////
+    \end{block}
 
-%/////////
-\begin{frame}[c]{Explainable Artificial Intelligence \ccite{darpa2016-xai}}
-    %
-    Explainability can be achieved:
+     \framebreak
+
+    Explainability \ccite{darpa2016-xai} can be achieved:
     %
     \begin{block}{Post-hoc explanation}
         \begin{itemize}
@@ -202,16 +303,18 @@
 \end{frame}
 %/////////
 
-
-
-
-%===============================================================================
-\section{Taxonomy}
-%===============================================================================
-
-%/////////
+\begin{frame}[c]{Taxonomy}
+    \begin{block}{Dimensions}
+        \begin{itemize}
+            \item Aim $\rightarrow$ main purpose of the injection;
+            \item Predictors $\rightarrow$ target of the injection;
+            \item How $\rightarrow$ in which way the injection is performed;
+            \item Logic $\rightarrow$ what kind of logic formalism is used to represent knowledge.
+        \end{itemize}
+    \end{block}
+\end{frame}
+    
 \begin{frame}[c]{Aim}
-    %
     \begin{block}{Enrich (learning support)}
         \begin{itemize}
             \item reduce learning time;
@@ -223,188 +326,114 @@
     \end{block}
     %
     \begin{block}{Manifold (symbolic knowledge manipulation)}
+    \begin{itemize}
+        \item logic inference;
+        %
+        \item information retrieval;
+        %
+        \item knowledge base completion/fusion.
+    \end{itemize}
+    \end{block}
+\end{frame}
+%/////////
+
+\begin{frame}[c]{Predictors}
+    \begin{block}{What kind of predictors are feasable for \ski?}
         \begin{itemize}
-            \item logic inference;
+            \item in theory every sub-symbolic predictors;
             %
-            \item information retrieval;
+            \item in particular (deep) neural networks are the preferred targets for several reasons:
             %
-            \item knowledge base completion/fusion.
+            \begin{itemize}
+                \item easy to manipulate;
+                %
+                \item high performance;
+                %
+                \item technological maturity.
+            \end{itemize}
         \end{itemize}
     \end{block}
 \end{frame}
 %/////////
 
-%/////////
-\begin{frame}[allowframebreaks]{Predictors}
-    %
-    Theoretically, one can inject prior knowledge into any sub-symbolic predictor.
-    %
-    In practice, NN are almost the sole predictors treated in literature, however, lot of different NN architecture are considered.
-    %
-    \begin{figure}
-        \centering
-        \includegraphics[width=.6\linewidth]{figures/neuron.png}
-    \end{figure}
-    %
-    
-    \framebreak
-    
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.8\textwidth]{figures/cnn-architecture}
-    \end{figure}
-    %
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.8\textwidth]{figures/rnn-architecture}
-    \end{figure}
-    %
-\end{frame}
-%/////////
-
 
 %/////////
-\begin{frame}[c]{How}
-    %
-    There exist three major ways to perform knowledge injection on sub-symbolic predictors:
-    %
-    \begin{itemize}
-        \item \alert{constraining}, a cost factor proportional to the violation of the knowledge is introduced during learning;
-        \item \alert{structuring}, the architecture of the predictor is built in such a way to mimic the knowledge;
-        \item \alert{embedding}, the symbolic knowledge is embedded into a tensor form and it is given in input as training data to the predictor.
-    \end{itemize} 
-    %
-\end{frame}
-%/////////
-
-%/////////
-\begin{frame}[allowframebreaks]{Constraining}
-    %
-    \begin{itemize}
-        \item Knowledge cost factor is introduced in the loss function;
+\begin{frame}[allowframebreaks]{How}
+    \begin{block}{Injection families}
         %
-        \item for NN the cost affects backpropagation \ccite{backpropagation} during training.
+        There exist three major ways to perform knowledge injection on sub-symbolic predictors:
         %
         \begin{itemize}
-            \item[$\Rightarrow$] Predictor does not violate the prior knowledge (to a certain extent).
+            \item \alert{constraining}, a cost factor proportional to the violation of the knowledge is introduced during learning;
+            \item \alert{structuring}, the architecture of the predictor is built in such a way to mimic the knowledge;
+            \item \alert{embedding}, the symbolic knowledge is embedded into a tensor form and it is given in input as training data to the predictor.
         \end{itemize} 
-    \end{itemize}
-    
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.6\textwidth]{figures/ski-constraining}
-    \end{figure}
+    \end{block}
     %
     
     \framebreak
-    
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.8\textwidth]{figures/nn-backprop.png}
-    \end{figure}
-    
-    \framebreak
-    
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.8\textwidth]{figures/nn-gradient-descent.png}
-    \end{figure}    
-\end{frame}
-%/////////
 
-%/////////
-\begin{frame}[allowframebreaks]{Structuring}
+    \begin{block}{Constraining}
+       \begin{itemize}
+           \item Knowledge cost factor is introduced in the loss function;
+           %
+           \item for NN the cost affects backpropagation \ccite{backpropagation} during training.
+           %
+           \begin{itemize}
+               \item[$\Rightarrow$] Predictor does not violate the prior knowledge (to a certain extent).
+           \end{itemize} 
+       \end{itemize}
+       
+       \begin{figure}
+           \centering
+           \includegraphics[width=0.4\textwidth]{figures/ski-constraining}
+       \end{figure}
+       %
+    \end{block}
+    
+    \framebreak
+    
+    \begin{block}{Structuring}
+         \begin{itemize}
+            \item Inner architecture is shaped to be able to ``mimic'' the knowledge;
+            %
+            \item for NN this means \emph{ad-hoc} layers.
+            %
+            \begin{itemize}
+                \item[$\Rightarrow$] Predictor directly exploits knowledge when needed.
+            \end{itemize} 
+        \end{itemize}
+        %
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.6\textwidth]{figures/ski-structuring}
+        \end{figure}
+        %
+    \end{block}
+
+    \framebreak
+   
     %
-    \begin{itemize}
-        \item Inner architecture is shaped to be able to ``mimic'' the knowledge;
-        %
-        \item for NN this means \emph{ad-hoc} layers.
-        %
+    \begin{block}{Embedding}
         \begin{itemize}
-            \item[$\Rightarrow$] Predictor directly exploits knowledge when needed.
-        \end{itemize} 
-    \end{itemize}
-    %
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.7\textwidth]{figures/ski-structuring}
-    \end{figure}
-    %
-    
-    \framebreak
-    
-    \begin{itemize}
-        \item We need to define a mapping from crispy logic rules into fuzzy continuous interpretations;
-        %
-        \item then we need to map the interpretations into ad-hoc neurons/layers.
-    \end{itemize}   
-    
-    \framebreak
-    
-    \begin{equation*}
-        \begin{aligned}
-            \var{A}&\leftarrow\var{B}\wedge\var{C}\wedge\neg\var{D}.\\
-            \var{A}&\leftarrow\var{E}\wedge\var{F}.\\
-            \var{B}&\leftarrow\const{true}.\\
-        \end{aligned}    
-    \end{equation*}
-    %
-    \begin{figure}
-        \centering
-        \includegraphics[height=0.5\textheight]{figures/structuring-example}
-    \end{figure}
+            \item Symbolic knowledge is embedded into a tensor form;
+            %
+            \item this is used as predictor's input data (alone or with a ``standard'' dataset).
+            %
+            \begin{itemize}
+                \item[$\Rightarrow$] Predictor's aim is manifold in most cases.
+            \end{itemize} 
+        \end{itemize}
+        
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.6\textwidth]{figures/ski-embedding}
+        \end{figure}
+    \end{block}
 \end{frame}
 %/////////
 
-%/////////
-\begin{frame}[allowframebreaks]{Embedding}
-    %
-    \begin{itemize}
-        \item Symbolic knowledge is embedded into a tensor form;
-        %
-        \item this is used as predictor's input data (alone or with a ``standard'' dataset).
-        %
-        \begin{itemize}
-            \item[$\Rightarrow$] Predictor's aim is manifold in most cases.
-        \end{itemize} 
-    \end{itemize}
-    
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.7\textwidth]{figures/ski-embedding}
-    \end{figure}
-    %
-    \framebreak
-    %
-    \begin{itemize}
-        \item Knowledge graph embedding \ccite{kge-survey};
-        %
-        \item entities and relations are embedded into continuos vector spaces;
-        %
-        \item scoring function $f_{r}(h,t)$ defined on each fact $(h, r, t)$ to measure its plausibility;
-    \end{itemize}
-    %
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.8\textwidth]{figures/kge-space.png}
-    \end{figure}
-    
-    \framebreak
-    
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.8\textwidth]{figures/kge-nn-1.png}
-    \end{figure}
-    
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.8\textwidth]{figures/kge-nn-2.png}
-    \end{figure}
-    
-\end{frame}
-%/////////
 
-%/////////
 \begin{frame}[allowframebreaks]{Logic}
     \begin{block}{Intensional}
         \begin{itemize}
@@ -423,366 +452,45 @@
         \end{itemize}
     \end{block}
     
-    Recursive intensional predicates are very expressive and powerful, as they enable the description of infinite sets via a finite (and commonly small) amount of formul\ae.
+    \framebreak
     
-    \framebreak        
-    
-    Almost the totality of SKI algorithms deal with:
-    %
-    \begin{itemize}
-        \item \alert{first order logic} (FOL);
-        %
-        \item \alert{knowledge graph} (KG);
-        %
-        \item \alert{propositional logic} (PL).
-        
-    \end{itemize}
-\end{frame}
-%/////////
-
-%/////////
-\begin{frame}[allowframebreaks]{First Order Logic}
-    \begin{itemize}
-        \item FOL is extremely flexible and expressive;
-        \item you can use recursion and define recursive structures;
-        \item maybe too ``powerful'' for canonic NN.
+    \begin{block}{Most used logic formalisms}
         \begin{itemize}
-            \item[$\Rightarrow$] Most NN are natively DAG (directed acyclic graph)
-            \item this allows backpropagation as training algorithm but ...
-            \item how can you support recursion?  
+            \item Recursive intensional predicates are very expressive and powerful, as they enable the description of infinite sets via a finite (and commonly small) amount of formul\ae;
+            \item however, most sub-symbolic predictors are NN, the vast majority of them are direct acyclic graph (DAG) $\rightarrow$ no support to recursion;
+            \item therefore one of the most common logic is just \alert{propositional logic (PL)} followed by \alert{knowledge graph (KG)} and then by \alert{first order logic (FOL)}.
         \end{itemize}
-    \end{itemize}
-    \centering
-    %
-    \phantom{You can't!}
-    %
-    \phantom{Unless you use some tricks.}
-    
-    \framebreak
-    
-    \begin{itemize}
-        \item FOL is extremely flexible and expressive;
-        \item you can use recursion and define recursive structures;
-        \item maybe too ``powerful'' for canonic NN.
-        \begin{itemize}
-            \item[$\Rightarrow$] Most NN are natively DAG (directed acyclic graph)
-            \item this allows backpropagation as training algorithm but ...
-            \item how can you support recursion?  
-        \end{itemize}
-    \end{itemize}
-    \centering
-    %
-    You can't!
-    %
-    Unless you use some tricks.
-    
-    \framebreak
-    
-    \begin{equation*}
-        \begin{aligned}
-            \pred{parent}(\const{abraham},\const{isaac}). &\phantom{\rightarrow} \pred{male}(\const{abraham}).\\
-            \pred{parent}(\const{sarah},\const{isaac}). &\phantom{\rightarrow} \pred{female}(\const{sarah}).\\
-            \pred{parent}(\const{isaac},\const{jacob}). &\phantom{\rightarrow} \pred{male}(\const{isaac}).\\
-            \pred{parent}(\const{rebekah},\const{jacob}). &\phantom{\rightarrow} \pred{female}(\const{rebekah}).\\
-            \dots &\phantom{\rightarrow} \pred{male}(\const{jacob}).\\
-            \forall\var{X} \forall\var{Y} \pred{parent}(\const{\var{X}},\var{Y}) &\rightarrow \pred{child}(\var{Y},\var{X}).\\
-            \forall\var{X} \forall\var{Y} \pred{parent}(\const{\var{X}},\var{Y}) \wedge \pred{male}(\var{X}) &\rightarrow \pred{father}(\var{X},\var{Y}).\\
-            \forall\var{X} \forall\var{Y} \pred{parent}(\const{\var{X}},\var{Y}) \wedge \pred{female}(\var{X}) &\rightarrow \pred{mother}(\var{X},\var{Y}).\\
-            \forall\var{X} \forall\var{Y} \exists\var{Z} \pred{parent}(\const{\var{X}},\var{Z}) \wedge \pred{parent}(\var{Z},\var{Y}) &\rightarrow \pred{grandparent}(\var{X},\var{Y}).\\
-        \end{aligned}    
-    \end{equation*}
-\end{frame}
-%/////////
-
-%/////////
-\begin{frame}[allowframebreaks]{Knowledge Graph}
-    
-    \begin{itemize}
-        \item Only constants, variables and n-ary predicates with $n < 3$;
-        \item collections of triplets $\langle \functor{a}\ \predication{f}\ \functor{b} \rangle$ or $\predication{f}(\functor{a}, \functor{b})$
-        \item essentially directed graph:
-        \begin{itemize}
-            \item nodes $\rightarrow$ individuals,
-            \item vertices $\rightarrow$ properties connecting individuals;
-        \end{itemize}
-        \item may instantiate an ontology, i.e., a formal description of classes characterising a given domain.
-    \end{itemize}
-    
-    \framebreak
-    
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.8\textwidth]{figures/kg-example}
-    \end{figure}    
-\end{frame}    
-%/////////
-
-%/////////
-\begin{frame}[allowframebreaks]{Propositional Logic}
-    \begin{itemize}
-        \item No quantifiers, terms, and non-atomic predicates;
-        \item expressions involving one or many 0-ary predicates (propositions) possibly interconnected by ordinary logic connectives;
-        \item low expressiveness, but easy to work with.
-    \end{itemize}
-    %
-    \centering
-    \begin{equation*}
-        \begin{aligned}
-            \pred{big\_petal}\wedge\pred{average\_sepal}&\rightarrow\const{virginica}.\\
-            \pred{big\_petal}\wedge\neg\pred{average\_sepal}&\rightarrow\const{versicolor}.\\
-            \pred{big\_petal}&\rightarrow\const{setosa}.\\
-            \pred{average\_sepal}&\equiv(3\le\var{SepalWidth}<5)\\
-            \pred{big\_petal}&\equiv(\var{PetalLength}>3)\\
-        \end{aligned}    
-    \end{equation*}
-    
-    \framebreak
-    
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.6\textwidth]{figures/iris-dataset}
-    \end{figure}
-    
-\end{frame}
-%/////////
-
-
-%===============================================================================
-\section{Literature overview}
-%===============================================================================
-
-%/////////
-\begin{frame}[c]{Notable works}
-    %
-    \begin{block}{KBANN: Knowledge Base Artificial Neural Network \ccite{KBANN-origin}}
-        %
-        It is one of the first works in SKI.
-        %
-        Authors inject prior knowledge into a NN and validate their method on real world biological datasets.
-        %
-        \begin{itemize}
-            %
-            \item aim $\rightarrow$ enrich;
-            %
-            \item predictor $\rightarrow$ neural network;
-            %
-            \item how $\rightarrow$ structuring and constraining;
-            %
-            \item logic $\rightarrow$ propositional.
-            %    
-        \end{itemize}        
     \end{block}
-    %
 \end{frame}
-%/////////
 
-%/////////
-\begin{frame}[allowframebreaks]{KBANN}
-    \begin{block}{Algprithm}
-        \begin{enumerate}
-            \item rewrite rules so that disjuncts are expressed as a set of rules that each have only one antecedent;
-            %
-            \item directly map the rule structure into a neural network;
-            %
-            \item label units in the KBANN-net according to their ``level'';
-            %
-            \item add hidden units to the network at user-specified levels (optional);
-            %
-            \item add units for known input features that are not referenced in the rules;
-            %
-            \item add links not specified by translation between all units in topologically-contiguous levels;
-            %
-            \item Perturb the network by adding near-zero random numbers to all link weights and biases.
-        \end{enumerate}
-    \end{block}
-    
-    \framebreak
-    
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.7\textwidth]{figures/kbann-algorithm.png}
-    \end{figure}
-    
-    \framebreak
-    
-    \begin{equation*}
-        \begin{aligned}
-            \textit{Error}&= - \sum_{i=1}^{n}{[(1-d_{i})*\log_{2}{(1-a_{i})} + d_{i}*\log_{2}{(a_{i})}]}\\
-            \textit{Regularizer}&=\lambda\sum_{i\in\omega}{\frac{(\omega_{i} - \omega_{init_{i}})^{2}}{1+(\omega_{i}- \omega_{init_{i}})^{2}}}
-        \end{aligned}
-    \end{equation*}
-\end{frame}
-%/////////
 
-%/////////
-\begin{frame}[allowframebreaks]{FANN}
-    %
-    \begin{block}{FANN: Fibred Artificial Neural Network \ccite{FANN-theory,BaderFlairs2005}}
-        %
-        Authors present an interesting approach to deal with FOL in NN.
-        %
-        The key idea is to allow single neurons to behave like entire embedded networks according to a fibring function $\phi$.
-        %
-        \begin{itemize}
-            %
-            \item aim $\rightarrow$ manifold;
-            %
-            \item predictor $\rightarrow$ neural network;
-            %
-            \item how $\rightarrow$ structuring;
-            %
-            \item logic $\rightarrow$ first order logic.
-            %    
-        \end{itemize}        
-    \end{block}
-    
-    \framebreak
-    
-    \begin{figure}
-        \centering
-        \includegraphics[height=0.8\textheight]{figures/fibring-example.png}
-    \end{figure}
-    
-\end{frame}
-%/////////
 
 %===============================================================================
 \section{\longpsyki}
 %===============================================================================
 
-%/////////
-\begin{frame}{General SKI workflow}
-    
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.8\textheight]{figures/ski-workflow.pdf}
-    \end{figure}
-    
-\end{frame}
-%/////////
 
-%\\\\\\\\
-\begin{frame}{1 -- Parsing}
-    
-    \begin{minipage}{0.5\textwidth}
-        \begin{equation*}
-            \begin{split}
-                class&(X_{-30}, \dots, X_{30}, ie) \leftarrow\\
-                &\textit{pyramidine-rich}(\dots)\ \wedge\\
-                &X_{-3} = y\ \wedge\\
-                &X_{-2} = a\ \wedge\\
-                &X_{-1} = g\ \wedge\\
-                &X_{1} = g\ \wedge\\
-                &\neg(\textit{ie-stop}(\dots)) 
-            \end{split}
-        \end{equation*}
-    \end{minipage}
-    \noindent\begin{minipage}{0.4\textwidth}% adapt widths of minipages to your needs
-        \includegraphics[width=\linewidth]{figures/ast-ie-1.png}
-    \end{minipage}%
-    
-    
-\end{frame}
-%\\\\\\\\\\\\\\\\\\\\\
-
-%\\\\\\\\\\\\\\\\\\\\\
-\begin{frame}{2 -- Fuzzification}
-    
-    \begin{minipage}{0.6\textwidth}
-        \input{tables/fuzzification}
-        
-        \begin{center}\scriptsize
-            $^{*}$ encodes the value for the $i^{th}$ output
-            \\
-            \smallskip
-            $^{**}$ assuming $p$ is defined by $k$ clauses of the form:
-            \\
-            $\pred{p}(\bar{X}) \leftarrow \psi_1,\ \ldots,\ \pred{p}(\bar{X}) \leftarrow \psi_k$
-        \end{center}
-    \end{minipage}
-    %
-    \begin{minipage}{0.35\textwidth}
-        \begin{equation*}
-            \begin{split}
-                class&(X_{-30}, \dots, X_{30}, ie) \leftarrow\\
-                &X_{-3} = y\ \wedge\\
-                &X_{-2} = a\ \wedge\\
-                &X_{-1} = g\ \wedge\\
-                &X_{1} = g
-            \end{split}
-        \end{equation*}
-        %
-        \centering
-        $\downarrow$
-        \begin{equation*}
-            \begin{split}
-                min\{&min\{min\{1-|X_{-3} - y|,\\
-                &\phantom{min\{min\{}1-|X_{-2} - a|\},\\
-                &\phantom{min\{}1-|X_{-1} - g|\},\\
-                &1-|X_{1}-g|\}
-            \end{split}
-        \end{equation*}
-    \end{minipage}
-    
-\end{frame}
-%\\\\\\\\\\\\\\\\\\\\\
-
-%/////////
-\begin{frame}[c]{3 -- Injection}
-    %
-    Injection step is algorithm specific but it falls back into the three approaches already discussed:
-    \begin{block}{Injection families}
+\begin{frame}[c]{Gentle presentation}
+    \begin{block}{\longpsyki{} (\psyki)}
         \begin{itemize}
-            \item constraining;
-            \item structuring;
-            \item embedding.
-        \end{itemize}
-    \end{block}
-    %
-    We will see some examples later.
-\end{frame}
-%/////////
-
-%/////////
-\begin{frame}[c]{4 -- Training}
-    %
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.8\textwidth]{figures/training-workflow.png}
-    \end{figure}
-\end{frame}
-%/////////
-
-
-%/////////
-\begin{frame}[allowframebreaks]{Overall Design}
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.8\textwidth]{figures/psyki-design}
-    \end{figure}
-    
-    \framebreak
-    
-    \begin{figure}
-        \centering
-        \includegraphics[height=0.8\textheight]{figures/psyki-class-diagram}
-    \end{figure}
-    
-    \framebreak
-    
-    \begin{block}{Key components}
-        \begin{itemize}
-            \item\alert{injector}: an entity capable of injecting symbolic knowledge into sub-symbolic predictors;
+            \item \psyki is intended as a library of \ski{} algorithms for data/computer scientists;
             %
-            \item\alert{predictor}: a classifier/regressor;
+            \item it is written in Python and supports Tensorflow;
             %
-            \item\alert{formula}: a visitable data structure representing a logic rule;
+            \item code is public available on \href{https://github.com/psykei/psyki-python}{https://github.com/psykei/psyki-python}
             %
-            \item\alert{fuzzifier}: an entity that embed a crisp formula into a fuzzy continuous interpretation object.
+            \item to install run \texttt{pip install psyki}
+            %
+            \item currently \psyki{} supports the following \ski{} algorithms:
+            \begin{itemize}
+                \item \longkins{} (\kins);
+                \item \longkill{} (\shortkill);
+                \item \longkbann{} (\kbann).
+            \end{itemize}
         \end{itemize}
     \end{block}
 \end{frame}
-%/////////
+
 
 
 %/////////
@@ -820,7 +528,7 @@
     
     \begin{figure}
         \centering
-        \includegraphics[width=0.8\textwidth]{figures/kins-fuzzifier-modules}
+        \includegraphics[width=0.65\textwidth]{figures/neurons}
     \end{figure}
     
 \end{frame}
@@ -833,52 +541,52 @@
     %
     \begin{minipage}{0.5\textwidth}
         \begin{lstlisting}[language={}, basicstyle=\ttfamily\tiny,frame=none]
-            EI-stop ::- @-3 'TAA'.
-            EI-stop ::- @-3 'TAG'.
-            EI-stop ::- @-3 'TGA'.
-            EI-stop ::- @-4 'TAA'.
-            EI-stop ::- @-4 'TAG'.
-            EI-stop ::- @-4 'TGA'.
-            EI-stop ::- @-5 'TAA'.
-            EI-stop ::- @-5 'TAG'.
-            EI-stop ::- @-5 'TGA'.
-            
-            IE-stop ::- @1 'TAA'.
-            IE-stop ::- @1 'TAG'.
-            IE-stop ::- @1 'TGA'.
-            IE-stop ::- @2 'TAA'.
-            IE-stop ::- @2 'TAG'.
-            IE-stop ::- @2 'TGA'.
-            IE-stop ::- @3 'TAA'.
-            IE-stop ::- @3 'TAG'.
-            IE-stop ::- @3 'TGA'.
-            
-            pyramidine-rich :- 6 of (@-15 'YYYYYYYYYY').
-            
-            EI :- @-3 'MAGGTRAGT', not(EI-stop).
-            
-            IE :- pyramidine-rich, @-3 'YAGG', not(IE-stop).
+        EI-stop ::- @-3 'TAA'.
+        EI-stop ::- @-3 'TAG'.
+        EI-stop ::- @-3 'TGA'.
+        EI-stop ::- @-4 'TAA'.
+        EI-stop ::- @-4 'TAG'.
+        EI-stop ::- @-4 'TGA'.
+        EI-stop ::- @-5 'TAA'.
+        EI-stop ::- @-5 'TAG'.
+        EI-stop ::- @-5 'TGA'.
+        
+        IE-stop ::- @1 'TAA'.
+        IE-stop ::- @1 'TAG'.
+        IE-stop ::- @1 'TGA'.
+        IE-stop ::- @2 'TAA'.
+        IE-stop ::- @2 'TAG'.
+        IE-stop ::- @2 'TGA'.
+        IE-stop ::- @3 'TAA'.
+        IE-stop ::- @3 'TAG'.
+        IE-stop ::- @3 'TGA'.
+        
+        pyramidine-rich :- 6 of (@-15 'YYYYYYYYYY').
+        
+        EI :- @-3 'MAGGTRAGT', not(EI-stop).
+        
+        IE :- pyramidine-rich, @-3 'YAGG', not(IE-stop).
         \end{lstlisting}
     \end{minipage}
     \vline
     \begin{minipage}{0.45\textwidth}
         \begin{lstlisting}[language={}, basicstyle=\ttfamily\tiny,frame=none]           
-            Class, Id, DNA-sequence
-            
-            EI,ATRINS-DONOR-521,CCAGCTGCAT...AGCCAGTCTG
-            EI,ATRINS-DONOR-905,AGACCCGCCG...GTGCCCCCGC
-            EI,BABAPOE-DONOR-30,GAGGTGAAGG...CACGGGGATG
-            ...
-            IE,ATRINS-ACCEPTOR-701,TTCAGCGGCC...GCCCTGTGGA
-            IE,ATRINS-ACCEPTOR-1678,GGACCTGCTC...GGGGGCTCTA
-            IE,BABAPOE-ACCEPTOR-801,GCGGTTGATT...AAGATGAAGG
-            ...
-            N,AGMKPNRSB-NEG-1,CAAAAGAACA...CAAGGCTACA
-            N,AGMORS12A-NEG-181,AGGGAGGTGT...GGGCATGGGG
-            N,AGMORS9A-NEG-481,TGGTCAATTC...TCTTGCTCTG
-            ...
-            
-            3190 Records
+    Class, Id, DNA-sequence
+    
+    EI,ATRINS-DONOR-521,CCAGCTGCAT...AGCCAGTCTG
+    EI,ATRINS-DONOR-905,AGACCCGCCG...GTGCCCCCGC
+    EI,BABAPOE-DONOR-30,GAGGTGAAGG...CACGGGGATG
+    ...
+    IE,ATRINS-ACCEPTOR-701,TTCAGCGGCC...GCCCTGTGGA
+    IE,ATRINS-ACCEPTOR-1678,GGACCTGCTC...GGGGGCTCTA
+    IE,BABAPOE-ACCEPTOR-801,GCGGTTGATT...AAGATGAAGG
+    ...
+    N,AGMKPNRSB-NEG-1,CAAAAGAACA...CAAGGCTACA
+    N,AGMORS12A-NEG-181,AGGGAGGTGT...GGGCATGGGG
+    N,AGMORS9A-NEG-481,TGGTCAATTC...TCTTGCTCTG
+    ...
+    
+    3190 Records
         \end{lstlisting}
     \end{minipage}
     
