@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: recursive
 
@@ -25,13 +25,17 @@ jobs:
         id: get-version
         run: echo "::set-output name=version::$(cat *.tex | python .github/scripts/compute-version.py)"
 
+      - name: Get Time
+        id: current-time
+        run: echo "::set-output name=time::$(date +'%Y-%m-%d-%H-%M')"
+
       - name: Create Release
         id: create-release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: '${{ steps.get-version.outputs.version }}'
+          tag_name: '${{ steps.get-version.outputs.version }}+${{ steps.current-time.outputs.time }}'
 
       - name: Upload Release Asset
         id: upload-release-asset
@@ -41,5 +45,5 @@ jobs:
         with:
           upload_url: ${{ steps.create-release.outputs.upload_url }}
           asset_path: ./${{ env.LATEX_ROOT }}.pdf
-          asset_name: ${{ env.LATEX_ROOT }}-${{ steps.get-version.outputs.version }}.pdf
+          asset_name: ${{ env.LATEX_ROOT }}-${{ steps.get-version.outputs.version }}+${{ steps.current-time.outputs.time }}.pdf
           asset_content_type: application/pdf
