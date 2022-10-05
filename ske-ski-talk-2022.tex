@@ -23,7 +23,7 @@
 %
 \institute[DISI, Univ.\ Bologna]
 {
-    $^{*}$Dipartimento di Informatica -- Scienza e Ingegneria (DISI)\\\textsc{Alma Mater Studiorum} -- Universit{\`a} di Bologna
+    $^{*}$\disi\\\unibo
     \\
     \{\speaker{matteo.magnini}, giovanni.ciatto\}@unibo.it % emph the presenting author's email
 }
@@ -92,27 +92,27 @@
 
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Concerning human (and machine) reasoning}
+\begin{frame}[c]{Concerning human (and machine) reasoning}
     
     \begin{block}{The three ways}
         \begin{itemize}
-            \item \alert{induction} $\rightarrow$ a kind of reasoning that uses particular examples in order to reach a general conclusion about something;
+            \item \alert{induction}\\
             %
-            \item \alert{deduction} $\rightarrow$ the act or process of using logic or reason to form a conclusion or opinion about something;
+            a kind of reasoning that uses particular examples in order to reach a general conclusion about something\\
             %
-            \item \alert{abduction} $\rightarrow$ the forming and accepting on probation of a hypothesis to explain surprising facts.
-        \end{itemize}
-    \end{block}
-
-    \framebreak
-    
-     \begin{block}{The three ways}
-        \begin{itemize}
-            \item \alert{induction} $\rightarrow$ machine learning (e.g., neural networks);
+            $\rightarrow$ machine learning (e.g., neural networks);
             %
-            \item \alert{deduction} $\rightarrow$ symbolic artificial intelligence (e.g., logic programs);
+            \item \alert{deduction}\\
             %
-            \item \alert{abduction} $\rightarrow$ abductive logic programming.
+            the act or process of using logic or reason to form a conclusion or opinion about something\\
+            %
+            $\rightarrow$ symbolic artificial intelligence (e.g., logic programs);
+            %
+            \item \alert{abduction}\\
+            %
+            the forming and accepting on probation of a hypothesis to explain surprising facts\\
+            %
+            $\rightarrow$ abductive logic programming.
         \end{itemize}
     \end{block}
 
@@ -207,6 +207,10 @@
     
     \framebreak
     
+    Interpretability vs performance trade-off
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/interpretability-performance-tradeoff}
+    
 \end{frame}
 %/////////
 
@@ -229,7 +233,7 @@
         \begin{itemize}
             \item This will be just a brief introduction, I will focus more on \longski{} rather than \longske;
             %
-            \item for more details and questions about \ske{} please contact \emph{Federico Sabbatini} \href{mailto:f.sabbatini@unibo.it}{f.sabbatini@unibo.it}
+            \item for more details and questions about \ske{} please contact\\$\rightarrow$ \emph{Federico Sabbatini} \href{mailto:f.sabbatini@unibo.it}{f.sabbatini@unibo.it}
         \end{itemize}
     \end{block}
     
@@ -237,9 +241,69 @@
 %/////////
 
 
+%/////////
+\begin{frame}[c]{Why \ske?}
+    
+    Explainability \ccite{darpa2016-xai} can be achieved:
+    %
+    \begin{block}{By post-hoc explanation}
+        \begin{itemize}
+            \item applying an algorithm of symbolic knowledge extraction on a trained predictor;
+            %
+            \item output $\rightarrow$ logic rules (or other symbolic means) that describe the predictor's behaviour.
+            %
+        \end{itemize}    
+    \end{block}
+    
+\end{frame}
+%/////////
 
+\begin{frame}[allowframebreaks]{Taxonomy}
+    \begin{block}{Translucency}
+       What kind of ML predictor does the \ske{} method support?
+        %
+        \begin{itemize}
+            \item pedagogical: any supervised predictor
+            \item decompositional: a particular sort of ML predictor (e.g. NN, SVM, DT)      
+        \end{itemize} 
+     \end{block}
 
-
+    \begin{block}{Input data}
+        \begin{itemize}
+            \item binary: $\mathcal{X} \equiv \{0, 1\}^n$
+            \item discrete: $\mathcal{X} \in \{x_1, \ldots, x_n\}^n$   
+            \item continuous: $\mathcal{X} \subseteq \mathbb{R}^n$     
+        \end{itemize} 
+    \end{block}
+        
+    \framebreak
+        
+    \begin{block}{Output shape}
+        \begin{itemize}
+            \item rule list: i.e. ordered sequences of if-then-else rules
+            \item decision tree: hierarchical set of if-then-else rules involving a comparison among a variable and a constant   
+            \item decision table: 2D tables summarising decisions for each possible assignment of variables 
+        \end{itemize} 
+    \end{block}
+        
+    \framebreak
+        
+    \begin{block}{Output expressiveness}
+        %
+        \begin{itemize}
+            \item propositional: boolean statements + logic connectives
+            %
+            \begin{itemize}
+                \item there including arithmetic comparisons among variables and constants
+            \end{itemize}
+            
+            \item fuzzy: hierarchical set of if-then-else rules involving a comparison among a variable and a constant   
+            \item oblique: boolean statements + logic connectives + arithmetic comparisons
+            \item M-of-N: any of the above + statements like $m-\text{of}-\{\phi_1, \ldots, \phi_n \}$
+        \end{itemize} 
+        
+    \end{block}
+\end{frame}
 
 
 %===============================================================================
@@ -248,7 +312,7 @@
     
 %/////////
 \begin{frame}[c]{Definition}
-    \begin{block}{We define \longski{} as: \ccite{surveyNeuroSymb,surveyXie,surveyCalegariCO20}}
+    \begin{block}{We define \longski{}(\ski) as: \ccite{surveyNeuroSymb,surveyXie,surveyCalegariCO20}}
         \begin{displayquote}\itshape
             any \emph{algorithmic} procedure affecting how \alert{sub-symbolic predictors} draw their inferences in such a way that predictions are either \emph{computed} as a function of, or made \emph{consistent} with, some \emph{given} \alert{symbolic knowledge}.
         \end{displayquote}
@@ -259,7 +323,7 @@
 
 
 %/////////
-\begin{frame}[allowframebreaks]{Why SKI?}
+\begin{frame}[allowframebreaks]{Why \ski?}
     \begin{block}{There are several benefits:}
         %
         \begin{itemize}
@@ -280,15 +344,6 @@
      \framebreak
 
     Explainability \ccite{darpa2016-xai} can be achieved:
-    %
-    \begin{block}{Post-hoc explanation}
-        \begin{itemize}
-            \item applying an algorithm of symbolic knowledge extraction on a trained predictor;
-            %
-            \item output $\rightarrow$ logic rules that describe the predictor's behaviour.
-            %
-        \end{itemize}    
-    \end{block}
     
     \begin{block}{By design}
         \begin{itemize}
@@ -470,8 +525,8 @@
 %===============================================================================
 
 
-\begin{frame}[c]{Gentle presentation}
-    \begin{block}{\longpsyki{} (\psyki)}
+\begin{frame}[allowframebreaks]{Gentle presentation}
+    \begin{block}{\longpsyki{} (\psyki) \ccite{psyki-extraamas2022}}
         \begin{itemize}
             \item \psyki is intended as a library of \ski{} algorithms for data/computer scientists;
             %
@@ -483,12 +538,24 @@
             %
             \item currently \psyki{} supports the following \ski{} algorithms:
             \begin{itemize}
-                \item \longkins{} (\kins);
-                \item \longkill{} (\shortkill);
-                \item \longkbann{} (\kbann).
+                \item \longkins{} (\kins) \ccite{kins-cilc2022}
+                \item \longkill{} (\shortkill) \ccite{kill-woa2022}
+                \item \longkbann{} (\kbann) \ccite{KBANN-origin}
             \end{itemize}
         \end{itemize}
+    run \texttt{python -m psyki.wiki elicit} to check the supported injectors
     \end{block}
+
+    \framebreak
+    
+    General code snippet for \psyki{} usage.
+    \lstinputlisting[
+    language=Python,
+    basicstyle=\ttfamily\tiny,
+    label=lst:code,
+    captionpos=b,
+    ]{listings/kins-snippet.py}
+    
 \end{frame}
 
 
@@ -537,7 +604,7 @@
 %/////////
 \begin{frame}[fragile,allowframebreaks]{Case study}
     %
-    PSJGS: Primate Splice-Junction Gene Sequences dataset
+    PSJGS: \href{https://archive.ics.uci.edu/ml/datasets/Molecular+Biology+(Splice-junction+Gene+Sequences)}{Primate Splice-Junction Gene Sequences dataset}
     %
     \begin{minipage}{0.5\textwidth}
         \begin{lstlisting}[language={}, basicstyle=\ttfamily\tiny,frame=none]
@@ -612,6 +679,112 @@
     
 \end{frame}
 %/////////
+
+
+%/////////
+\begin{frame}[allowframebreaks]{\longkill}
+    \begin{block}{\longkill{} (\shortkill)}
+        %
+        A general SKI algorithm that does not impose constrains on the sub-symbolic predictor to enrich, except being a neural network.
+        %
+        \begin{itemize}
+            %
+            \item aim $\rightarrow$ enrich;
+            %
+            \item predictor $\rightarrow$ neural network;
+            %
+            \item how $\rightarrow$ constraining;
+            %
+            \item logic $\rightarrow$ stratified Datalog with negation.
+            %    
+        \end{itemize}
+    \end{block}
+    
+    \framebreak
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\textwidth]{figures/lambda-layer.pdf}
+    \end{figure}
+    
+    \framebreak
+    
+    \input{tables/logic-formulae.tex}
+    
+    \framebreak
+    
+    \begin{block}{Cost function}
+        Whenever the neural network wrongly predicts a class and violates the prior knowledge a cost proportional to the violation is added.
+        %
+        In this way the output of the network differs more from the expected one and this affects the back propagation step.
+    \end{block}
+    
+    \begin{equation*}
+        \centering
+        \begin{aligned}
+            &Y' = f(Y, \pred{cost})\\
+            &f = Y\ x\ (\textbf{1} + \pred{cost})\\
+            &\pred{cost}(X,Y) = \eta(\pred{p}(X) - (\textbf{1} - Y))\quad \text{(}\textbf{1} - Y\text{ because 0 means true)}\\
+        \end{aligned}
+    \end{equation*}
+    
+    \framebreak
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.9\textwidth]{figures/kill.png}
+    \end{figure}
+    
+\end{frame}
+
+
+%/////////
+\begin{frame}[allowframebreaks]{Case study}
+    
+    \begin{block}{PHDS: Poker Hand Data Set}
+        Each record represents one poker hand. 5 cards identified by 2 values: suit and rank.
+        %
+        Classes: 10.
+        %
+        Training set: 25.010. Test set: 1.000.000.
+    \end{block}
+    
+    \input{tables/poker-data}
+    
+    \framebreak
+    
+    Some injected rules.
+    \input{tables/poker-rules}
+    
+    \framebreak
+    
+    \begin{block}{Setup}
+        \begin{itemize}
+            \item neural network: 3-layers fully connected (128, 128, 10 neurons per layer respectively) with rectified linear unit (ReLU) as activation function, except for the last layer (softmax);
+            %
+            \item knowledge: see previous slides;
+            %
+            \item categorical cross-entropy as loss function
+            %
+            \item training: Adams as optimiser for 100 epochs (with early stop conditions);
+            %
+            \item experiment repeated 30 times to have a statistic significant population.
+        \end{itemize}
+    \end{block}
+    %
+    
+    \framebreak
+    
+    \input{tables/test-stats}
+    
+    \framebreak
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=.8\linewidth]{figures/class-accuracy-distributions.pdf}
+    \end{figure}
+    
+\end{frame}
 
 
 %===============================================================================

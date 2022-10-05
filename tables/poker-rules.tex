@@ -1,0 +1,113 @@
+\begin{scriptsize}
+    \begin{longtable}{|p{1.5cm}|p{9cm}}
+            \textbf{Class} & \textbf{Logic Formulation}
+            \\\hline\hline
+            Pair & $\begin{array}{l}
+                \pred{class}(R_1, \ldots, S_5, \const{pair}) \leftarrow \pred{pair}(R_1, \ldots, S_5)
+                \\
+                \pred{pair}(R_1, \ldots, S_5) \leftarrow R_1 = R_2
+                \\
+                \pred{pair}(R_1, \ldots, S_5) \leftarrow R_1 = R_3
+                \\
+                \pred{pair}(R_1, \ldots, S_5) \leftarrow R_1 = R_4
+                \\
+                \pred{pair}(R_1, \ldots, S_5) \leftarrow R_1 = R_5
+                \\
+                \pred{pair}(R_1, \ldots, S_5) \leftarrow R_2 = R_3
+                \\
+                \pred{pair}(R_1, \ldots, S_5) \leftarrow R_2 = R_4
+                \\
+                \pred{pair}(R_1, \ldots, S_5) \leftarrow R_2 = R_5
+                \\
+                \pred{pair}(R_1, \ldots, S_5) \leftarrow R_3 = R_4
+                \\
+                \pred{pair}(R_1, \ldots, S_5) \leftarrow R_3 = R_5
+                \\
+                \pred{pair}(R_1, \ldots, S_5) \leftarrow R_4 = R_5
+            \end{array}$
+            \\\hdashline
+            Two Pairs & $\begin{array}{l}
+                \pred{class}(R_1, \ldots, S_5, \const{two}) \leftarrow \pred{two}(R_1, \ldots, S_5)
+                \\
+                \pred{two}(R_1, \ldots, S_5) \leftarrow R_1 = R_2 \wedge R_3 = R_4
+                \\
+                \pred{two}(R_1, \ldots, S_5) \leftarrow R_1 = R_3 \wedge R_2 = R_4
+                \\
+                \pred{two}(R_1, \ldots, S_5) \leftarrow R_1 = R_4 \wedge R_2 = R_3
+                \\
+                \pred{two}(R_1, \ldots, S_5) \leftarrow R_1 = R_2 \wedge R_3 = R_5
+                \\
+                \pred{two}(R_1, \ldots, S_5) \leftarrow R_1 = R_3 \wedge R_3 = R_5
+                \\
+                \pred{two}(R_1, \ldots, S_5) \leftarrow R_1 = R_5 \wedge R_2 = R_3
+                \\
+                \pred{two}(R_1, \ldots, S_5) \leftarrow R_1 = R_2 \wedge R_4 = R_5
+                \\
+                \pred{two}(R_1, \ldots, S_5) \leftarrow R_1 = R_4 \wedge R_2 = R_5
+                \\
+                \pred{two}(R_1, \ldots, S_5) \leftarrow R_1 = R_5 \wedge R_2 = R_4
+                \\
+                \pred{two}(R_1, \ldots, S_5) \leftarrow R_1 = R_3 \wedge R_4 = R_5
+                \\
+                \pred{two}(R_1, \ldots, S_5) \leftarrow R_1 = R_4 \wedge R_3 = R_5
+                \\
+                \pred{two}(R_1, \ldots, S_5) \leftarrow R_1 = R_5 \wedge R_3 = R_4
+                \\
+                \pred{two}(R_1, \ldots, S_5) \leftarrow R_2 = R_3 \wedge R_4 = R_5
+                \\
+                \pred{two}(R_1, \ldots, S_5) \leftarrow R_2 = R_4 \wedge R_3 = R_5
+                \\
+                \pred{two}(R_1, \ldots, S_5) \leftarrow R_2 = R_5 \wedge R_3 = R_4
+            \end{array}$
+            \\\hdashline
+            Three of a Kind & $\begin{array}{l}
+
+                \pred{class}(R_1, \ldots, S_5, \const{three}) \leftarrow \pred{three}(R_1, \ldots, S_5)
+                \\
+                \pred{three}(R_1, \ldots, S_5) \leftarrow R_1 = R_2 \wedge R_1 = R_3
+                \\
+                \pred{three}(R_1, \ldots, S_5) \leftarrow R_1 = R_2 \wedge R_1 = R_4
+                \\
+                \pred{three}(R_1, \ldots, S_5) \leftarrow R_1 = R_2 \wedge R_1 = R_5
+                \\
+                \pred{three}(R_1, \ldots, S_5) \leftarrow R_1 = R_3 \wedge R_1 = R_4
+                \\
+                \pred{three}(R_1, \ldots, S_5) \leftarrow R_1 = R_3 \wedge R_1 = R_5
+                \\
+                \pred{three}(R_1, \ldots, S_5) \leftarrow R_1 = R_4 \wedge R_1 = R_5
+                \\
+                \pred{three}(R_1, \ldots, S_5) \leftarrow R_2 = R_3 \wedge R_2 = R_4
+                \\
+                \pred{three}(R_1, \ldots, S_5) \leftarrow R_2 = R_3 \wedge R_2 = R_5
+                \\
+                \pred{three}(R_1, \ldots, S_5) \leftarrow R_2 = R_4 \wedge R_2 = R_5
+                \\
+                \pred{three}(R_1, \ldots, S_5) \leftarrow R_3 = R_4 \wedge R_3 = R_5
+                
+            \end{array}$
+            \\\hdashline
+            Flush & $\begin{array}{l}
+
+                \pred{class}(R_1, \ldots, S_5, \const{flush}) \leftarrow \pred{flush}(R_1, \ldots, S_5)
+                \\
+                \pred{flush}(R_1, \ldots, S_5) \leftarrow S_1 = S_2 \wedge S_1 = S_3 \wedge S_1 = S_4 \wedge S_1 = S_5
+
+            \end{array}$
+            \\\hdashline
+            Four of a Kind & $\begin{array}{l}
+
+                \pred{class}(R_1, \ldots, S_5, \const{four}) \leftarrow \pred{four}(R_1, \ldots, S_5)
+                \\
+                \pred{four}(R_1, \ldots, S_5) \leftarrow R_1 = R_2 \wedge R_1 = R_3 \wedge R_1 = R_4
+                \\
+                \pred{four}(R_1, \ldots, S_5) \leftarrow R_1 = R_2 \wedge R_1 = R_3 \wedge R_1= R_5
+                \\
+                \pred{four}(R_1, \ldots, S_5) \leftarrow R_1 = R_2 \wedge R_1 = R_4 \wedge R_1 = R_5
+                \\
+                \pred{four}(R_1, \ldots, S_5) \leftarrow R_1 = R_3 \wedge R_1 = R_4 \wedge R_1 = R_5
+                \\
+                \pred{four}(R_1, \ldots, S_5) \leftarrow R_2 = R_3 \wedge R_2 = R_4 \wedge R_2 = R_5
+
+            \end{array}$
+        \end{longtable}
+\end{scriptsize}
