@@ -227,7 +227,7 @@
 
 %/////////
 \begin{frame}[c]{Definition}
-    \begin{block}{We define \longske{} (\ske) as:}
+    \begin{block}{We define \longske{} (\ske) as: \ccite{andrews1995survey,GarcezBG01,Hailesilassie16,ZilkeMJ16,guidotti2018survey}}
         \begin{displayquote}\itshape
             any \emph{algorithmic} procedure accepting \emph{trained} \alert{sub-symbolic predictors} as input and producing \alert{symbolic knowledge} as output, in such a way that the extracted knowledge \emph{reflects} the behaviour of the predictor with high fidelity.
         \end{displayquote}
@@ -307,6 +307,34 @@
             \item M-of-N: any of the above + statements like $m-\text{of}-\{\phi_1, \ldots, \phi_n \}$
         \end{itemize} 
         
+    \end{block}
+\end{frame}
+
+
+%===============================================================================
+\section{\longpsyke}
+%===============================================================================
+
+\begin{frame}[c]{Gentle presentation}
+    \begin{block}{\longpsyke{} (\psyke) \ccite{psyke-woa2021}}
+        \begin{itemize}
+            \item \psyki is intended as a library of \ske{} algorithms for data/computer scientists;
+            %
+            \item it is written in Python and it is compliant with scikit-learn standard nomenclature, i.e., you can call a \ske{} algorithm upon a Ml model that has the \texttt{predict} method;
+            %
+            \item code is public available on \href{https://github.com/psykei/psyke-python}{https://github.com/psykei/psyke-python}
+            %
+            \item to install run \texttt{pip install psyke}
+            %
+            \item currently \psyke{} supports several \ski{} algorithms, among which:
+            \begin{itemize}
+                \item \longcart{} (\cart)
+                \item \longreal{} (\real)
+                \item \trepan{}
+                \item \iter{}
+                \item \gridex{}
+            \end{itemize}
+        \end{itemize}
     \end{block}
 \end{frame}
 
@@ -548,7 +576,6 @@
                 \item \longkbann{} (\kbann) \ccite{KBANN-origin}
             \end{itemize}
         \end{itemize}
-    run \texttt{python -m psyki.wiki elicit} to check the supported injectors
     \end{block}
 
     \framebreak
